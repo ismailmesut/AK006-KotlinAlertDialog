@@ -1,9 +1,11 @@
 package com.ismailmesutmujde.kotlinalertdialog
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
 
@@ -40,6 +42,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun save(view: View) {
-
+        val alert = AlertDialog.Builder(this@MainActivity)
+        alert.setTitle("Save")
+        alert.setMessage("Are you sure?")
+        // Zor gösterim
+        alert.setPositiveButton("Yes", object: DialogInterface.OnClickListener{
+            override fun onClick(dialog: DialogInterface?, which: Int) {
+                Toast.makeText(this@MainActivity, "Saved!", Toast.LENGTH_LONG).show()
+            }
+        })
+        // Kolay gösterim
+        alert.setNegativeButton("No") {p0, p1 ->
+            Toast.makeText(this@MainActivity, "Not Saved!", Toast.LENGTH_LONG).show()
+        }
+        alert.show()
     }
 }
